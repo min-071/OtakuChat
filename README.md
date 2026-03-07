@@ -71,9 +71,6 @@ cd ../frontend
 npm start
 ```
 
-#Contribution
-
-Feel free to contribute! Fork the repo, create a branch, and submit a pull request.
 
 License
 

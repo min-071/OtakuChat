@@ -4,7 +4,7 @@ interface ChatBoxProps {
   roomId?: string;
 }
 
-const ChatBox: React.FC<ChatBoxProps> = ({ roomId }) => {
+const ChatBox: React.FC<ChatBoxProps> = () => {
   return (
     <div className="flex flex-col h-full">
       {/* TODO: Messages list */}

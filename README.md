@@ -60,14 +60,13 @@ FIREBASE_AUTH_DOMAIN=your_auth_domain
 FIREBASE_PROJECT_ID=your_project_id
 ```
 6. Run the app locally:
+```bash
 
 # Backend
-```bash
 cd backend
 npm run dev
-```
+
 # Frontend
-```bash
 cd ../frontend
 npm start
 ```

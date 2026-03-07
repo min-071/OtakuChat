@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth';
 import type { User } from 'firebase/auth';
 import { auth } from '../services/firebase';
+import { getFirebaseAuthErrorMessage } from '../utils/firebaseAuthError';
 
 interface UseAuthReturn {
   user: User | null;
@@ -38,9 +39,11 @@ export const useAuth = (): UseAuthReturn => {
     setError(null);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-    } catch (err: any) {
-      setError(err);
-      throw err;
+    } catch (err: unknown) {
+      const message = getFirebaseAuthErrorMessage(err);
+      const friendlyError = new Error(message);
+      setError(friendlyError);
+      throw friendlyError;
     }
   }, []);
 
@@ -48,9 +51,11 @@ export const useAuth = (): UseAuthReturn => {
     setError(null);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-    } catch (err: any) {
-      setError(err);
-      throw err;
+    } catch (err: unknown) {
+      const message = getFirebaseAuthErrorMessage(err);
+      const friendlyError = new Error(message);
+      setError(friendlyError);
+      throw friendlyError;
     }
   }, []);
 
@@ -58,9 +63,11 @@ export const useAuth = (): UseAuthReturn => {
     setError(null);
     try {
       await signOut(auth);
-    } catch (err: any) {
-      setError(err);
-      throw err;
+    } catch (err: unknown) {
+      const message = getFirebaseAuthErrorMessage(err);
+      const friendlyError = new Error(message);
+      setError(friendlyError);
+      throw friendlyError;
     }
   }, []);
 
@@ -69,9 +76,11 @@ export const useAuth = (): UseAuthReturn => {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-    } catch (err: any) {
-      setError(err);
-      throw err;
+    } catch (err: unknown) {
+      const message = getFirebaseAuthErrorMessage(err);
+      const friendlyError = new Error(message);
+      setError(friendlyError);
+      throw friendlyError;
     }
   }, []);
 

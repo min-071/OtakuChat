@@ -1,8 +1,9 @@
 import React, { createContext, useContext } from 'react';
+import type { User } from 'firebase/auth';
 import { useAuth } from '../hooks/useAuth';
 
 interface AuthContextProps {
-  user: any;
+  user: User | null;
   loading: boolean;
   error: Error | null;
   login: (email: string, password: string) => Promise<void>;

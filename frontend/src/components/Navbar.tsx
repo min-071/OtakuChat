@@ -1,12 +1,12 @@
 import React from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
 // TODO: Replace with actual anime-inspired logo/svg
 const Logo: React.FC = () => (
   <div className="font-bold text-xl text-indigo-600">OtakuChat</div>
 );
-
-import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../context/AuthContext';
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuthContext();
@@ -15,9 +15,10 @@ const Navbar: React.FC = () => {
   const handleLogout = async () => {
     try {
       await logout();
+      toast.success('Logged out successfully');
       navigate('/login');
     } catch (err) {
-      console.error('logout error', err);
+      toast.error('Logout failed. Please try again.');
     }
   };
 

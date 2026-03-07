@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 // The configuration object will be injected from environment variables.
-// Be sure to create a .env file at the workspace root with the values defined
+// Be sure to create a .env file in the frontend directory with the values defined
 // in the README, then restart the dev server for Vite to pick them up.
 
 const firebaseConfig = {
@@ -15,6 +15,12 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
+
+if (!firebaseConfig.apiKey) {
+  throw new Error(
+    'Missing Firebase config. Create frontend/.env with VITE_FIREBASE_* keys and restart Vite.',
+  );
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

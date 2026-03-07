@@ -61,17 +61,25 @@ npm install
    4. Grab the web app configuration (API key, auth domain, project ID).
 
 6. Configure environment variables:
-   - Copy `.env.example` to `.env` at the repo root (or to `frontend/.env`).
-   - Populate it with the values from Firebase and any API URLs:
+    - Copy `frontend/.env.example` to `frontend/.env`.
+    - Populate it with the values from Firebase and any API URLs:
      ```bash
-     FIREBASE_API_KEY=your_api_key
-     FIREBASE_AUTH_DOMAIN=your_auth_domain
-     FIREBASE_PROJECT_ID=your_project_id
-     REACT_APP_API_URL=http://localhost:5000
+       VITE_FIREBASE_API_KEY=your_api_key
+       VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+       VITE_FIREBASE_PROJECT_ID=your_project_id
+       VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+       VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+       VITE_FIREBASE_APP_ID=your_app_id
+       VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+       VITE_REACT_APP_API_URL=http://localhost:5000
      ```
-   - The `.env` file is ignored by Git; never commit your real secrets.
+    - `frontend/.env` is ignored by Git; never commit your real secrets.
 
-7. Run the app locally:
+  7. (Backend auth middleware) Configure backend environment variables:
+    - Copy `backend/.env.example` to `backend/.env`.
+    - Add Firebase Admin credentials so protected routes can verify ID tokens.
+
+8. Run the app locally:
 
 ```bash
 # Backend

@@ -48,11 +48,11 @@ cd ../backend
 npm install
 ```
 4. Set up Firebase:
-
+```bash
  a. Create a Firebase project/n
  b. Enable Authentication (Email/Password)/n
  c. Add Firestore database
-
+```
 5. Configure environment variables (.env):
 ```bash
 FIREBASE_API_KEY=your_api_key

@@ -49,8 +49,8 @@ npm install
 ```
 4. Set up Firebase:
 
- a. Create a Firebase project
- b. Enable Authentication (Email/Password)
+ a. Create a Firebase project/n
+ b. Enable Authentication (Email/Password)/n
  c. Add Firestore database
 
 5. Configure environment variables (.env):

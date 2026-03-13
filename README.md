@@ -36,40 +36,63 @@ git clone https://github.com/yourusername/OtakuChat.git
 cd OtakuChat
 ```
 
-2. Install frontend dependencies:
+2. Check out the development branch (active work is on `development`):
+
+```bash
+git checkout development
+```
+
+3. Install frontend dependencies:
 ```bash
 cd frontend
 npm install
 ```
 
-3. Install backend dependencies:
+4. Install backend dependencies:
 ```bash
 cd ../backend
 npm install
 ```
-4. Set up Firebase:
-```bash
- a. Create a Firebase project/n
- b. Enable Authentication (Email/Password)/n
- c. Add Firestore database
-```
-5. Configure environment variables (.env):
-```bash
-FIREBASE_API_KEY=your_api_key
-FIREBASE_AUTH_DOMAIN=your_auth_domain
-FIREBASE_PROJECT_ID=your_project_id
-```
-6. Run the app locally:
-```bash
 
+5. Firebase setup (requires a Firebase account):
+   1. Create a new Firebase project in the console.
+   2. Enable **Authentication** (Email/Password provider; add Google/Facebook later if desired).
+   3. Add a **Firestore** database (start in test mode for development).
+   4. Grab the web app configuration (API key, auth domain, project ID).
+
+6. Configure environment variables:
+    - Copy `frontend/.env.example` to `frontend/.env`.
+    - Populate it with the values from Firebase and any API URLs:
+     ```bash
+       VITE_FIREBASE_API_KEY=your_api_key
+       VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+       VITE_FIREBASE_PROJECT_ID=your_project_id
+       VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+       VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+       VITE_FIREBASE_APP_ID=your_app_id
+       VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+       VITE_REACT_APP_API_URL=http://localhost:5000
+     ```
+    - `frontend/.env` is ignored by Git; never commit your real secrets.
+
+  7. (Backend auth middleware) Configure backend environment variables:
+    - Copy `backend/.env.example` to `backend/.env`.
+    - Add Firebase Admin credentials so protected routes can verify ID tokens.
+
+8. Run the app locally:
+
+```bash
 # Backend
 cd backend
 npm run dev
 
 # Frontend
 cd ../frontend
-npm start
+npm run dev
 ```
+
+The frontend will be available at http://localhost:3000 by default.
+
 
 
 License

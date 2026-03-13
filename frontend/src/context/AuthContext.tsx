@@ -4,6 +4,13 @@ import { useAuth } from '../hooks/useAuth';
 
 interface AuthContextProps {
   user: User | null;
+  backendUser: {
+    uid?: string;
+    email?: string;
+    name?: string | null;
+  } | null;
+  backendVerified: boolean;
+  backendError: Error | null;
   loading: boolean;
   error: Error | null;
   login: (email: string, password: string) => Promise<void>;

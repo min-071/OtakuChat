@@ -9,8 +9,11 @@ const Logo: React.FC = () => (
 );
 
 const Navbar: React.FC = () => {
-  const { user, logout } = useAuthContext();
+  const { user, logout, backendVerified, backendUser, backendError } = useAuthContext();
   const navigate = useNavigate();
+
+  const displayName = user?.displayName || user?.email?.split('@')[0] || 'Otaku';
+  const avatarLetter = displayName.charAt(0).toUpperCase();
 
   const handleLogout = async () => {
     try {
@@ -28,7 +31,31 @@ const Navbar: React.FC = () => {
       <div className="space-x-4 flex items-center">
         {user ? (
           <>
-            <span className="text-sm text-gray-700">{user.email}</span>
+            <div className="flex items-center gap-2">
+              {user.photoURL ? (
+                <img
+                  src={user.photoURL}
+                  alt={displayName}
+                  className="h-8 w-8 rounded-full object-cover"
+                />
+              ) : (
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-xs font-semibold text-white">
+                  {avatarLetter}
+                </div>
+              )}
+              <div className="flex flex-col items-start leading-tight">
+                <span className="text-sm font-medium text-gray-800">{displayName}</span>
+                <span className="text-xs text-gray-600">{user.email}</span>
+                <span
+                  className={`text-xs ${backendVerified ? 'text-emerald-600' : 'text-amber-600'}`}
+                  title={backendError?.message || 'Backend token verification status'}
+                >
+                  {backendVerified
+                    ? `API verified (${backendUser?.uid?.slice(0, 6) ?? 'ok'}...)`
+                    : 'API not verified'}
+                </span>
+              </div>
+            </div>
             <button
               onClick={handleLogout}
               className="text-sm text-gray-600 hover:text-indigo-600"
